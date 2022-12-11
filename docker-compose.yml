@@ -7,3 +7,7 @@ services:
       dockerfile: dockerfile
     environment:
       DISCORD_TOKEN: "your_token_here"
+      DISCORD_CLIENT_ID: "your-client-id-here"
+    volumes:
+      - ./data:/usr/src/app/data
+    restart: always
