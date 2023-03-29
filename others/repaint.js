@@ -13,7 +13,8 @@ module.exports = {
         try {
             const result = await createPaint(prompt, message.author.id);
             const file = new AttachmentBuilder(result, {name: "result.png", description: prompt});
-            await interaction.editReply({files: [file]});
+            await interaction.deleteReply();
+            await message.reply({files: [file]});
         } catch (err) {
             console.log(err);
             await interaction.editReply("```diff\n-何らかの問題が発生しました。\n```");
