@@ -34,6 +34,7 @@ module.exports = {
         } catch (err) {
             console.log(err);
             clearInterval(typing);
+            await tmpMsg.delete();
             await message.reply("```diff\n-何らかの問題が発生しました。\n```");
         }
     },

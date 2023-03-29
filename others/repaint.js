@@ -16,7 +16,7 @@ module.exports = {
             await interaction.editReply({files: [file]});
         } catch (err) {
             console.log(err);
-            await message.reply("```diff\n-何らかの問題が発生しました。\n```");
+            await interaction.editReply("```diff\n-何らかの問題が発生しました。\n```");
         }
     },
 };
