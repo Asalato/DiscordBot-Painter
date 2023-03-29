@@ -5,7 +5,7 @@ module.exports = {
     async execute(interaction) {
         if (!interaction.isButton()) return;
 
-        const message = interaction.message.reference;
+        const message = await interaction.channel.messages.fetch(interaction.message.reference.messageId);
         const tmpMsg = await message.reply("ちょっと待ってね");
         const prompt = message.content.replace(`<@${client.user.id}> `, "");
 
