@@ -33,31 +33,12 @@ for (const file of eventFiles) {
     }
 }
 
-client.on('interactionCreate', async interaction => {
-    const command = client.commands.get(interaction.commandName);
-    if (!command) return;
-    console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction: ${interaction.commandName}`);
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
-});
-
 client.on("interactionCreate", execute)
 
 client.on('guildCreate', async guild => {
     const { id } = guild;
     await GuildStore.setId(id);
     await registerCommands(id);
-});
-
-client.on('messageCreate', async message => {
-    if (message.author.bot) return false;
-    await temporaryMethodThatGetMessageByFetchingLatestChannelPost(message);
-    console.log(`${message.author.tag} in #${message.channel.name} send a message: ${message.content} at ${message.createdAt.toLocaleString()}`);
 });
 
 (async () => {
