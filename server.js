@@ -4,6 +4,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const {registerCommands} = require("./register");
 const GuildStore = require("./guildStore");
 const {temporaryMethodThatGetMessageByFetchingLatestChannelPost} = require("./utils");
+const {execute} = require("./others/repaint");
 require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages] });
@@ -44,6 +45,8 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 });
+
+client.on("interactionCreate", execute)
 
 client.on('guildCreate', async guild => {
     const { id } = guild;

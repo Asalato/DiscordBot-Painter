@@ -2,11 +2,10 @@ const {Configuration, OpenAIApi} = require("openai");
 const {EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
 const {createPaint} = require("../others/createPaint");
 module.exports = {
-    name: 'messageCreate',
-    once: false,
-    async execute(client, message) {
-        if (message.author.bot) return false;
-        if (!message.mentions.has(client.user)) return false;
+    async execute(interaction) {
+        if (!interaction.isButton()) return;
+
+        const message = interaction.message.reference;
         const tmpMsg = await message.reply("ちょっと待ってね");
         const prompt = message.content.replace(`<@${client.user.id}> `, "");
 
@@ -16,14 +15,7 @@ module.exports = {
                 clearInterval(typing);
                 await tmpMsg.delete();
                 const file = new AttachmentBuilder(result, {name: "result.png", description: prompt});
-                const row = new ActionRowBuilder()
-                    .addComponents(
-                        new ButtonBuilder()
-                            .setCustomId('repaint')
-                            .setLabel('再生成')
-                            .setStyle(ButtonStyle.Primary),
-                    );
-                await message.reply({files: [file], components: [row]});
+                await message.reply({files: [file]});
             } else {
                 await message.channel.sendTyping();
             }
