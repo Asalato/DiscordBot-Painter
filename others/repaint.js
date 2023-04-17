@@ -4,7 +4,7 @@ const {createPaint} = require("../others/createPaint");
 module.exports = {
     async execute(interaction) {
         if (!interaction.isButton()) return;
-        if (interaction.commandName === 'repaint') return;
+        if (interaction.commandName !== 'repaint') return;
 
         await interaction.deferReply();
         const message = await interaction.channel.messages.fetch(interaction.message.reference.messageId);

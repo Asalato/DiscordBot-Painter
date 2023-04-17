@@ -33,7 +33,7 @@ for (const file of eventFiles) {
     }
 }
 
-client.on("interactionCreate", execute)
+client.on("interactionCreate", async (interaction) => await execute(interaction));
 
 client.on('guildCreate', async guild => {
     const { id } = guild;
