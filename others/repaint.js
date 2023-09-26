@@ -2,7 +2,7 @@ const {Configuration, OpenAIApi} = require("openai");
 const {EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
 const {createPaint} = require("../others/createPaint");
 module.exports = {
-    async execute(interaction) {
+    async execute_repaint(interaction) {
         if (!interaction.isButton()) return;
         if (interaction.commandName !== 'repaint') return;
 

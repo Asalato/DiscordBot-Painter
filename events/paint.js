@@ -7,6 +7,8 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return false;
         if (!message.mentions.has(client.user)) return false;
+        if (message.content.includes('@here') || message.content.includes('@everyone')) return false;
+
         const tmpMsg = await message.reply("ちょっと待ってね");
         const prompt = message.content.replace(`<@${client.user.id}> `, "");
 

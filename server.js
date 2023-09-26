@@ -4,7 +4,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const {registerCommands} = require("./register");
 const GuildStore = require("./guildStore");
 const {temporaryMethodThatGetMessageByFetchingLatestChannelPost} = require("./utils");
-const {execute} = require("./others/repaint");
+const {execute_repaint} = require("./others/repaint");
 require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages] });
@@ -33,7 +33,7 @@ for (const file of eventFiles) {
     }
 }
 
-client.on("interactionCreate", async (interaction) => await execute(interaction));
+client.on("interactionCreate", async (interaction) => await execute_repaint(interaction));
 
 client.on('guildCreate', async guild => {
     const { id } = guild;
