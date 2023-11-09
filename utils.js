@@ -6,6 +6,8 @@ const rev = "v1.2.1";
 const isDev = false;
 
 module.exports = {
+    getRev: () => rev,
+    getIsDev: () => isDev,
     trySimpleReplyWhenContainsArray: async function(candArr, replyArr, message) {
         await sleep(500);
         for (let i = 0; i < candArr.length; ++i) {

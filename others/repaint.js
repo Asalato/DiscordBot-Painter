@@ -101,7 +101,11 @@ module.exports = {
                         .setLabel('再生成')
                         .setStyle(ButtonStyle.Primary),
                 );
-            await interaction.deleteReply();
+            try {
+                await interaction.deleteReply();
+            } catch {
+
+            }
             await message.reply({files: files, components: [row]});
         } catch (err) {
             console.log(err);

@@ -1,6 +1,6 @@
 const {EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
 const {createPaintFromDalle2, createPaintFromDalle3} = require("../others/createPaint");
-const {isMentioned, extractCommands, containsCommand, sendHelpText, replaceMentionsWithUsernames} = require("../utils");
+const {isMentioned, extractCommands, containsCommand, sendHelpText, replaceMentionsWithUsernames, getIsDev, getRev} = require("../utils");
 
 const commandList = [
     {
@@ -77,9 +77,9 @@ module.exports = {
         if (!isMentioned(client, message)) return;
 
         const commands = extractCommands(commandList, message);
-        if (containsCommand(commands,"!dev") !== isDev) return false;
+        if (containsCommand(commands,"!dev") !== getIsDev()) return false;
         if (containsCommand(commands,"!version")) {
-            await message.reply(rev);
+            await message.reply(getRev());
             return;
         }
         if (containsCommand(commands,"!help") || commands.message.replace(/\s/, "") === "") {
@@ -113,7 +113,7 @@ module.exports = {
             const parameter = containsCommand(commands, "mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle2";
             if (parameter === "dalle2") {
                 const size = containsCommand(commands, "size") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "small";
-                result = await createPaintFromDalle2(prompt, message.author.id, 1, size);
+                result = await createPaintFromDalle2(prompt, message.author.id, 2, size);
             }
             else if (parameter === "dalle3") {
                 const quality = containsCommand(commands, "quality") ? commands.commands.filter(c => c.command === "!quality")[0].parameter : "standard";
