@@ -3,7 +3,7 @@ const {createPaintFromDalle3} = require("../others/createPaint");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('paint')
+        .setName('paint3')
         .setDescription('絵を描きます（DALLE3）')
         .addStringOption(option =>
             option.setName('quality')
