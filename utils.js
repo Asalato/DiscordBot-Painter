@@ -2,7 +2,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const rev = "v1.2.1";
+const rev = "v1.2.2";
 const isDev = false;
 
 module.exports = {
