@@ -113,7 +113,7 @@ module.exports = {
             const parameter = containsCommand(commands, "!mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle2";
             if (parameter === "dalle2") {
                 const size = containsCommand(commands, "!size") ? commands.commands.filter(c => c.command === "!size")[0].parameter : "small";
-                result = await createPaintFromDalle2(prompt, message.author.id, 2, size);
+                result = await createPaintFromDalle2(prompt, message.author.id, size === "small" ? 2 : 1, size);
             }
             else if (parameter === "dalle3") {
                 const quality = containsCommand(commands, "!quality") ? commands.commands.filter(c => c.command === "!quality")[0].parameter : "standard";
