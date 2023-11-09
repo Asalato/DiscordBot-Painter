@@ -83,13 +83,13 @@ module.exports = {
 
         try {
             let result = [];
-            const parameter = containsCommand(commands, "mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle2";
+            const parameter = containsCommand(commands, "!mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle2";
             if (parameter === "dalle2") {
-                const size = containsCommand(commands, "size") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "small";
-                result = await createPaintFromDalle2(prompt, message.author.id, 1, size);
+                const size = containsCommand(commands, "!size") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "small";
+                result = await createPaintFromDalle2(prompt, message.author.id, 2, size);
             }
             else if (parameter === "dalle3") {
-                const quality = containsCommand(commands, "quality") ? commands.commands.filter(c => c.command === "!quality")[0].parameter : "standard";
+                const quality = containsCommand(commands, "!quality") ? commands.commands.filter(c => c.command === "!quality")[0].parameter : "standard";
                 result = await createPaintFromDalle3(prompt, message.author.id, quality);
             }
 
