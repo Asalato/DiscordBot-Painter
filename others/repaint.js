@@ -1,7 +1,7 @@
 const {Configuration, OpenAIApi} = require("openai");
 const {EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
 const {createPaint, createPaintFromDalle2, createPaintFromDalle3} = require("../others/createPaint");
-const {extractCommands, containsCommand} = require("../utils");
+const {extractCommands, containsCommand, replaceMentionsWithUsernames} = require("../utils");
 
 const commandList = [
     {
@@ -77,7 +77,7 @@ module.exports = {
 
         await interaction.deferReply();
         const message = await interaction.channel.messages.fetch(interaction.message.reference.messageId);
-        const prompt = message.content.replace(/^<@.*>\s/, "");
+        const prompt = replaceMentionsWithUsernames(message.mentions, commands.message);
 
         const commands = extractCommands(commandList, message);
 

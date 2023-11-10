@@ -43,11 +43,11 @@ const commandList = [
         options: [
             {
                 name: "dalle2",
-                description: "DALLE2モデルを利用します（デフォルト）。"
+                description: "DALLE2モデルを利用します。"
             },
             {
                 name: "dalle3",
-                description: `DALLE3モデルを利用します。`
+                description: `DALLE3モデルを利用します（デフォルト）。`
             }
         ],
         hasOption: true

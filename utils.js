@@ -2,8 +2,11 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const rev = "v1.2.2";
+const rev = "v1.2.3";
 const isDev = false;
+const changeNote = `
+v1.2.0  DALL-E 3モデルに対応し、OpenAIの最新APIを利用するように処理を変更しました
+v1.2.3  デフォルトで利用するモデルをDALL-E 3モデルに変更しました。`;
 
 module.exports = {
     getRev: () => rev,
@@ -100,7 +103,7 @@ module.exports = {
         }).join("\n");
         commandDesc = "\n🖊\ 利用可能なオプション一覧\n\t\tメッセージの先頭につけることで動作が変更されます。\n" + commandDesc
 
-        await message.reply("**_DiscordBot-Painter_** (https://github.com/Asalato/DiscordBot-Painter) by Asalato, Rev: **" + rev + "**" + (isDev ? " (**DEV CHANNEL**)" : "") + "\n" + commandDesc);
+        await message.reply("**_DiscordBot-Painter_** (https://github.com/Asalato/DiscordBot-Painter) by Asalato, Rev: **" + rev + "**" + (isDev ? " (**DEV CHANNEL**)" : "") + "\n" + commandDesc + "\n\n**Change Note:**\n" + changeNote);
     },
     replaceMentionsWithUsernames: function (mentions, content) {
         mentions.members.forEach((member) => {
