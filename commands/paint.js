@@ -18,6 +18,10 @@ module.exports = {
                 .setDescription('出力する画像の数')
                 .setMinValue(1)
                 .setMaxValue(10)
+        )
+        .addStringOption(option =>
+            option.setName('prompt')
+                .setDescription('出力する絵の内容')
         ),
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
@@ -25,6 +29,7 @@ module.exports = {
 
         const size = interaction.options.getString('size');
         const count = interaction.options.getIntegar('count');
+        const prompt = interaction.options.getString('prompt');
 
         const result = await createPaintFromDalle2(prompt, interaction.user.id, count, size);
         await interaction.editReply({files: result});

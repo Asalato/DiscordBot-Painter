@@ -11,12 +11,17 @@ module.exports = {
                 .addChoices(
                     {name: 'standard', value: 'standard'},
                     {name: 'hd', value: 'hd'}
-                )),
+                ))
+        .addStringOption(option =>
+            option.setName('prompt')
+                .setDescription('出力する絵の内容')
+        ),
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
         await interaction.deferReply();
 
         const quality = interaction.options.getString('quality');
+        const prompt = interaction.options.getString('prompt');
 
         const result = await createPaintFromDalle3(prompt, interaction.user.id, quality);
         await interaction.editReply({files: result});

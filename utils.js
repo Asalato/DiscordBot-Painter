@@ -103,7 +103,7 @@ module.exports = {
         }).join("\n");
         commandDesc = "\n🖊\ 利用可能なオプション一覧\n\t\tメッセージの先頭につけることで動作が変更されます。\n" + commandDesc
 
-        await message.reply("**_DiscordBot-Painter_** (https://github.com/Asalato/DiscordBot-Painter) by Asalato, Rev: **" + rev + "**" + (isDev ? " (**DEV CHANNEL**)" : "") + "\n" + commandDesc + "\n\n**Change Note:**\n" + changeNote);
+        await message.reply("**_DiscordBot-Painter_** (https://github.com/Asalato/DiscordBot-Painter) by Asalato, Rev: **" + rev + "**" + (isDev ? " (**DEV CHANNEL**)" : "") + "\n" + commandDesc + "\n\n**Change Note:**" + changeNote);
     },
     replaceMentionsWithUsernames: function (mentions, content) {
         mentions.members.forEach((member) => {
