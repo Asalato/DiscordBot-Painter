@@ -109,7 +109,7 @@ module.exports = {
             await message.reply({files: files, components: [row]});
         } catch (err) {
             console.log(err);
-            await interaction.editReply("```diff\n-何らかの問題が発生しました。\n```");
+            await message.reply(`\`\`\`diff\n-何らかの問題が発生しました。\n${err.toString()}\n\`\`\``);
         }
     },
 };

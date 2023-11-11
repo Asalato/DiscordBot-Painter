@@ -124,7 +124,7 @@ module.exports = {
             console.log(err);
             clearInterval(typing);
             await tmpMsg.delete();
-            await message.reply("```diff\n-何らかの問題が発生しました。\n```");
+            await message.reply(`\`\`\`diff\n-何らかの問題が発生しました。\n${err.toString()}\n\`\`\``);
         }
     },
 };
