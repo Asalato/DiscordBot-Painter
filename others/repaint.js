@@ -77,7 +77,7 @@ module.exports = {
 
         await interaction.deferReply();
         const message = await interaction.channel.messages.fetch(interaction.message.reference.messageId);
-        const prompt = replaceMentionsWithUsernames(message.mentions, commands.message);
+        const prompt = commands.message;
 
         const commands = extractCommands(commandList, message);
 

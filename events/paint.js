@@ -88,7 +88,7 @@ module.exports = {
         }
 
         const tmpMsg = await message.reply("ちょっと待ってね");
-        const prompt = replaceMentionsWithUsernames(message.mentions, commands.message);
+        const prompt = commands.message;
 
         let result = undefined;
         const typing = setInterval(async () => {
@@ -110,7 +110,7 @@ module.exports = {
         }, 1000);
 
         try {
-            const parameter = containsCommand(commands, "!mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle2";
+            const parameter = containsCommand(commands, "!mode") ? commands.commands.filter(c => c.command === "!mode")[0].parameter : "dalle3";
             if (parameter === "dalle2") {
                 const size = containsCommand(commands, "!size") ? commands.commands.filter(c => c.command === "!size")[0].parameter : "small";
                 result = await createPaintFromDalle2(prompt, message.author.id, size === "small" ? 2 : 1, size);
