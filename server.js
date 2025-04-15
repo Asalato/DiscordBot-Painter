@@ -5,6 +5,7 @@ const {registerCommands} = require("./register");
 const GuildStore = require("./guildStore");
 const {temporaryMethodThatGetMessageByFetchingLatestChannelPost} = require("./utils");
 const {execute_repaint} = require("./others/repaint");
+const HealthCheckServer = require('./HealthCheckServer');
 require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages] });
@@ -32,6 +33,17 @@ for (const file of eventFiles) {
         client.on(event.name, async (...args) => await event.execute(client, ...args));
     }
 }
+
+const healthCheck = new HealthCheckServer(client);
+
+client.once('ready', async () => {
+    try {
+        await healthCheck.start();
+        console.log('Health check server started');
+    } catch (error) {
+        console.error('Failed to start health check server:', error);
+    }
+});
 
 client.on("interactionCreate", async (interaction) => await execute_repaint(interaction));
 
